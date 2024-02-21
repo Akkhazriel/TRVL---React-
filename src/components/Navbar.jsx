@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Navbar.sass'
 import { Link } from 'react-router-dom'
 import { MdModeOfTravel } from "react-icons/md"
@@ -27,6 +27,11 @@ function Navbar() {
         }
     }
 
+    // Рендерим кнопку единожды
+    useEffect(() => {
+        showButton()
+    }, [])
+
     // Если окно меньше 960 то покажет кнопку
     window.addEventListener('resize', showButton)
 
@@ -36,7 +41,7 @@ function Navbar() {
         <nav className='navbar'>
             <div className="navbar-container">
                 {/* LOGO LINK */}
-                <Link to="/" className="navbar-logo">
+                <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                     TRVL <MdModeOfTravel />
                 </Link>
                 {/* MENU ICON */}
